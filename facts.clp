@@ -1,4 +1,3 @@
-(deffacts test
-(init 1)
-(init 2)
+(deffacts init
+(question 1 "So, you've got an awesome idea for a website?")
 )
