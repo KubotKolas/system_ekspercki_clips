@@ -15,6 +15,7 @@ def setup():
             facts += line
     env.build(rules)
     env.build(facts)
+    env.reset()
     return env
 
 i = 0
@@ -28,8 +29,8 @@ class MyWidget(QtWidgets.QWidget):
 
         self.hello = ["Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир"]
 
-        self.button1 = QtWidgets.QPushButton("Option 1")
-        self.button2 = QtWidgets.QPushButton("Option 2")
+        self.button1 = QtWidgets.QPushButton("Run clips")
+        self.button2 = QtWidgets.QPushButton("Next fact")
         self.button3 = QtWidgets.QPushButton("Option 3")
         self.button4 = QtWidgets.QPushButton("Option 4")
         self.text = QtWidgets.QLabel("Hello World", alignment=QtCore.Qt.AlignCenter)
@@ -41,25 +42,35 @@ class MyWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.button4)
 
         self.button1.clicked.connect(self.update)
-        self.button2.clicked.connect(self.update)
+        self.button2.clicked.connect(self.nextFact)
         self.button3.clicked.connect(self.update)
         self.button4.clicked.connect(self.update)
 
     @QtCore.Slot()
     def update(self):
         self.runClipsLogic()
-        self.text.setText(self.hello[self.state])
-        proceed = True
 
+    def nextFact(self):
+        global i
+        self.changeState(i)
+        i += 1
+        i = i % len(self.hello)
+        self.text.setText(self.hello[self.state])
     def changeState(self, newState):
         self.state = newState
 
 
     def runClipsLogic(self):
-        global i
-        self.changeState(i)
-        i += 1
-        i = i % 4
+        self.env.run()
+        self.hello = []
+        for fact in self.env.facts():
+            print(fact, type(fact))
+            for x in fact:
+                print('\t', x)
+            self.hello.append(str(fact))
+
+
+
 
 
 
