@@ -28,17 +28,55 @@ class MyWidget(QtWidgets.QWidget):
         self.env = newEnv
         self.state = 0
         self.finished = 0
+        self.questionBank = [
+            "So, you've got an awesome idea for a website?",
+            "Do you have any web related skills?",
+            "What can you do?",
+            "Sweet! Your're ready to build a site!",
+            "Hold it. Just cuz you have the skill, doesn't mean ya got the chops.",
+            "What's your idea of good code?",
+            "Great. What's your idea of good design?",
+            "Great. What's your idea of a good social media strategy?",
+            "Are you willing to learn?"
+        ]
         self.textBank = [
-            ["Sure do!", "Nope.", None, None, None]
+            ["Sure do!", "Nope.", None, None, None],
+            ["Nope.", "I know a little dreamweaver!", "Yeah totally.", None, None],
+            ["I can code!", "I can design!", "I'm a social media genius!", None, None],
+            ["Nice!", None, None, None, None],
+            ["Huh?", None, None, None, None],
+            ["Naming variables after my pets.", "Copy and paste from Stack Overflow.", "Lots and lots of nested tables.", "Scalable, well-commented. seamlessly integrated", None],
+            ["Rounded corners and plenty of gloss.", "The more fonts, the merrier.", "I dream of geocities.", "Starbursts and drop shadows.", "Clear hierarchy, beautiful interactions, thoughtful styling"],
+            ["Finding and seeding brand content in appropriate channels.", "Building engaging conversations around my launch.", "Just feel every page with share buttons.", "Spamming followers with sponsored links.", "Making lots of twitter accounts to retweet myself."],
+            []
         ]
         self.buttonBank = [
-            [True, True, False, False, False]
+            [True, True, False, False, False],
+            [True, True, True, False, False],
+            [True, True, True, False, False],
+            [True, False, False, False, False],
+            [True, False, False, False, False],
+            [True, True, True, True, False],
+            [True, True, True, True, True],
+            [True, True, True, True, True]
         ]
         self.responses = [
-            ["(answer 1 1 \"Sure do!\")", "(answer 1 2 \"Nope.\")", None, None, None]
+            ["(answer 1 1 \"Sure do!\")", "(answer 1 2 \"Nope.\")", None, None, None],
+            ["(answer 2 1 \"Nope.\")", "(answer 2 2 \"I know a little dreamweaver!\")", "(answer 2 3 \"Yeah totally.\")", None, None],
+            ["(answer 3 1 \"I can design!\")", "(answer 3 2 \"I can code!\")", "(answer 3 3 \"I'm a social media genius!\")", None, None],
+            ["(answer 4 1 \"Nice!\")", None, None, None, None],
+            ["(answer 5 1 \"Huh?\")", None, None, None, None],
+            ["(answer 6 1 \"Naming variables after my pets.\")", "(answer 6 2 \"Copy and paste from Stack Overflow.\")", "(answer 6 3 \"Lots and lots of nested tables.\")", "(answer 6 4 \"Scalable, well-commented. seamlessly integrated\")", None],
+            ["(answer 7 1 \"Rounded corners and plenty of gloss.\")", "(answer 7 2 \"The more fonts, the merrier.\")", "(answer 7 3 \"I dream of geocities.\")", "(answer 7 4 \"Starbursts and drop shadows.\")", "(answer 7 5 \"Clear hierarchy, beautiful interactions, thoughtful styling.\")"],
+            ["(answer 8 1 \"Finding and seeding brand content in appropriate channels.\")", "(answer 8 2 \"Building engaging conversations around my launch.\")", "(answer 8 3 \"Just feel every page with share buttons.\")", "(answer 8 4 \"Spamming followers with sponsored links.\")", "(answer 8 5 \"Making lots of twitter accounts to retweet myself.\")"]
         ]
         self.results = [
-            "No idea, no dice."
+            "No idea, no dice.",
+            "Whoa, that's oldschool! Sounds like it's time for an update.",
+            "Yeah. You're gonna need a developer.",
+            "We're not letting you anywhere near photoshop.",
+            "We're not convinced you know what social media is.",
+            "You look great! Go forth with your website brave one!"
         ]
         self.finalButtons = [
             ["Ok.", "Go again.", None, None, None],
@@ -62,7 +100,7 @@ class MyWidget(QtWidgets.QWidget):
         # self.button4 = QtWidgets.QPushButton("4")
         # self.button5 = QtWidgets.QPushButton("5")
 
-        self.text = QtWidgets.QLabel("So, you've got an awesome idea for a website?", alignment=QtCore.Qt.AlignCenter)
+        self.text = QtWidgets.QLabel(self.questionBank[self.state], alignment=QtCore.Qt.AlignCenter)
         self.layout = QtWidgets.QVBoxLayout(self)
         self.layout.addWidget(self.text)
         self.layout.addWidget(self.allButtons[0])
@@ -88,6 +126,8 @@ class MyWidget(QtWidgets.QWidget):
             app.exit()
         self.runClipsLogic(fact_string)
         self.answers = self.textBank[self.state]
+        self.updateButtons()
+        self.text.setText(self.questionBank[self.state])
         if self.finished > 0:
             self.answers = self.finalButtons[0]
             self.currentResponse = self.finalButtons[1]
@@ -118,6 +158,8 @@ class MyWidget(QtWidgets.QWidget):
             print(fact)
             # self.answers.append(str(fact))
             f = str(fact).split()[0][1::]
+            if f == "question":
+                self.changeState(fact[0]-1)
             if f == "result":
                 self.finished = fact[0]
 
