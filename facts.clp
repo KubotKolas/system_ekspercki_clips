@@ -1,3 +1,9 @@
+(deftemplate question
+    (slot nr (type NUMBER))
+    (slot text (type STRING))
+    (multislot possible_answers (type STRING))
+)
+
 (deffacts init
-(question 1 "So, you've got an awesome idea for a website?")
+    (init)
 )
