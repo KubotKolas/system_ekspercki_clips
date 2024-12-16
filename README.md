@@ -13,26 +13,10 @@
    ```
 3) Run `./begin.sh`
    ```
-   ./begin.sh
+   bash ./begin.sh
    ```
 
-### Or:
-1) Clone this repo:
-
-   ```
-   git clone https://github.com/KubotKolas/system_ekspercki_clips && cd ./system_ekspercki_clips
-   ``` 
-2) Enable venv using one of the scripts in `.venv/bin/`
-
-    Ex. for bash: 
-   ```
-   source .venv/bin/activate
-   ```
-3) Run `main.py` using python
-
-   ```
-   python main.py
-   ```
+_If needed, library requirements for manual creation of venv are in file_ `requirements.txt` (`pip install -r requirements.txt`)
 
 ## Used libraries (and their depencencies)
 * PySide6 (Qt GUI library) - 6.8.1
