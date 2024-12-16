@@ -61,12 +61,12 @@ class Website(QWidget):
         answer = button.text()
         print(answer)
         if answer == "Finish":
-            exit()
+            QApplication.quit()
+            return
         environment.assert_string(f'({self.s} "{answer}")')
         environment.run()
         self.update_values()
         self.create_buttons()
-
 
 if __name__ == "__main__":
     main()
