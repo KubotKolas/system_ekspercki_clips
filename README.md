@@ -29,5 +29,5 @@ _If needed, library requirements for manual creation of venv are in file_ `requi
 * shiboken6 - 6.8.1
 
 ## Authors
-* Jakub Kolasiński
-* Jakub Pilarski
+* Jakub Kolasiński 155985
+* Jakub Pilarski 155835
