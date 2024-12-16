@@ -3,22 +3,36 @@
 ## Usage:
 1) Clone this repo:
 
-    ```git clone https://github.com/KubotKolas/system_ekspercki_clips``` 
+   ```
+   git clone https://github.com/KubotKolas/system_ekspercki_clips
+   ``` 
 2) Make `begin.sh` executable:
 
-    ```chmod +x ./begin.sh```
+   ```
+   chmod +x ./begin.sh
+   ```
 3) Run `./begin.sh`
+   ```
+   ./begin.sh
+   ```
 
 ### Or:
 1) Clone this repo:
 
-    `git clone https://github.com/KubotKolas/system_ekspercki_clips` 
+   ```
+   git clone https://github.com/KubotKolas/system_ekspercki_clips
+   ``` 
 2) Enable venv using one of the scripts in `.venv/bin/`
 
-    Ex. for bash: ```source .venv/bin/activate```
+    Ex. for bash: 
+   ```
+   source .venv/bin/activate
+   ```
 3) Run `main.py` using python
 
-    ```python main.py```
+   ```
+   python main.py
+   ```
 
 ## Used libraries (and their depencencies)
 * PySide6 (Qt GUI library) - 6.8.1
