@@ -4,7 +4,7 @@
 1) Clone this repo:
 
    ```
-   git clone https://github.com/KubotKolas/system_ekspercki_clips
+   git clone https://github.com/KubotKolas/system_ekspercki_clips && cd ./system_ekspercki_clips
    ``` 
 2) Make `begin.sh` executable:
 
@@ -20,7 +20,7 @@
 1) Clone this repo:
 
    ```
-   git clone https://github.com/KubotKolas/system_ekspercki_clips
+   git clone https://github.com/KubotKolas/system_ekspercki_clips && cd ./system_ekspercki_clips
    ``` 
 2) Enable venv using one of the scripts in `.venv/bin/`
 
